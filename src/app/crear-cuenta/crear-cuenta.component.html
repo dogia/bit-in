@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="fix-flex">
+        <h1>Bit-In</h1>
+
+        <p>Nos alegra tenerte del lado curioso de la vida. ¡Bienvenido!</p>
+
+        <hr>
+        <div class="form-group">
+            <label for="email">Correo electrónico*</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="mail">@</span>
+                </div>
+                <input id="email" type="email" class="form-control" placeholder="tucorreo@mail.com" aria-label="Username"
+                    aria-describedby="mail" (blur)="validarEmail()" [(ngModel)]="email">
+            </div>
+
+            <label for="password">Contraseña *</label>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="**********" name="password" id="password" [(ngModel)]="password" (blur)="validarPassword()">
+            </div>
+
+            <label for="repassword">Confirma tu Contraseña*</label>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="**********" name="repassword" id="repassword" [(ngModel)]="repassword" (blur)="validarPassword()">
+            </div>
+
+            <label for="nickname">Nickname*</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="nickname-dy">#</span>
+                </div>
+                <input id="nickname" type="text" class="form-control" placeholder="UnBuenNickName01" aria-label="Nickname"
+                    aria-describedby="nickname-dy" [(ngModel)]="nickname" (blur)="validarNickname()">
+            </div>
+
+            <label for="fullname">Nombre Completo (Opcional)</label>
+            <div class="input-group mb-3">
+                <input id="fullname" type="text" class="form-control" placeholder="Tu nombre y apellido" aria-label="Nombre Completo" [(ngModel)]="fullname">
+            </div>
+
+            <label for="birthdate">Fecha de nacimiento (Opcional)</label>
+            <div class="input-group mb-3">
+                <input id="birthdate" type="date" class="form-control" aria-label="Cumpleaños" [(ngModel)]="birthdate">
+            </div>
+
+            <label for="image">Imágen de perfil (Opcional)</label>
+            <div class="input-group mb-3">
+                <input id="image" type="file" max-size="4000000" accept="image/*" aria-label="Fotografía" (change)="handleInputChange($event)">
+            </div>
+
+            <br>
+            <button class="login-btn btn btn-primary" (click)="crear()">Crear</button>&nbsp;<a class="login-btn btn btn-secondary" routerLink="">Regresar</a>
+        </div>
+        <hr>
+        <small>Al crear una cuenta en Bit-In estás aceptando que manejemos tu información personal de acuerdo a las normas legales vigentes. Los campos marcados con * son obligatorios.</small>
+    </div>
+</div>

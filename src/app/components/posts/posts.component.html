@@ -35,9 +35,13 @@
                     <p class="left-post">{{post.createdate.timestamp | date:'shortTime'}}</p>
                     <img [src]="post.userimageURL" class="fotografia-user" alt="Imagen del usuario en el post"/>
                     <p class="right-post">
-                        <i class="fas fa-trash-alt cursor" (click)="deletePost(post.idpost)"></i>
+                        <button class="btn btn-primary" (click)="deletePost(post.idpost)">
+                            <i class="fas fa-trash-alt cursor"></i>
+                        </button>
                         &nbsp;
-                        <i class="fas fa-edit cursor" (click)="editable(post.idpost)"></i>
+                        <button class="btn btn-primary" (click)="editable(post.idpost)">
+                            <i class="fas fa-edit cursor"></i>
+                        </button>
                     </p>
                 </div>
             </div>

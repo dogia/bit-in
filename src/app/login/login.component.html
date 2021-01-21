@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="fix-flex">
+        <h1>Bit-In</h1>
+
+        <p>Bienvenido a Bit-In, únete para conocer el mundo a través de los demás.</p>
+        <hr>
+        <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="mail">@</span>
+                </div>
+                <input type="email" class="form-control" placeholder="tucorreo@mail.com" aria-label="Username"
+                    aria-describedby="mail" [(ngModel)]="email">
+            </div>
+
+            <label for="password">Contraseña</label>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="**********" name="password" id="password" [(ngModel)]="password">
+            </div>
+
+            <button class="login-btn btn btn-primary" (click)="submit()">Iniciar Sesión</button>
+        </div>
+        <hr>
+        <p>¿Eres nuevo por aquí? <a routerLink="/crear-cuenta">¡Crea una nueva cuenta!</a></p>
+    </div>
+</div>

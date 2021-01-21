@@ -33,7 +33,7 @@
                     <p class="right-post">
                         <i class="fas fa-trash-alt cursor" (click)="deletePost(post.idpost)"></i>
                         &nbsp;
-                        <i class="fas fa-edit cursor"></i>
+                        <i class="fas fa-edit cursor" (click)="editable(post.idpost)"></i>
                     </p>
                 </div>
             </div>
@@ -49,13 +49,13 @@
             </div>
     
             <div class="col-md-8 text-left">
-                <p>{{post.description}}</p>
+                <p [id]="('text-post-postid-'+post.idpost)" (blur)="editar(post.idpost)">{{post.description}}</p>
             </div>
         </div>
 
         <div class="row body-post" *ngIf="post.imageURL === null">    
-            <div class="col-md-8 text-left">
-                <p>{{post.description}}</p>
+            <div class="col-md-12 text-left">
+                <p [id]="('text-post-postid-'+post.idpost)" (blur)="editar(post.idpost)">{{post.description}}</p>
             </div>
         </div>
 

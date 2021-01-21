@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
+import { ToastrComponentlessModule, ToastRef, ToastrService } from 'ngx-toastr';
 import { from } from 'rxjs';
 import { USER } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
@@ -29,6 +29,23 @@ export class PostsComponent implements OnInit {
     this.user.image = `http://apibitwanv1.tk/public/uploads/${environment.applicantcode}/users/${USER.getId()}/${USER.getImage()}`;
     this.user.nickname = USER.getNickname();
     this.verPorUsuarioId();   
+  }
+
+  // Click en el botón editar hace que el texto del post sea editable
+  editable(idpost){
+    const postText = document.getElementById('text-post-postid-'+idpost);
+    postText.setAttribute("contenteditable", "true");
+    postText.focus();
+  }
+
+  // Acción después del blur en el cuadro de texto que guarda la información en el servidor
+  async editar(idpost){
+    const postText = document.getElementById('text-post-postid-'+idpost);
+    const response = await USER.request(environment.URLs.publicaciones.editar, {idpost: idpost, description: postText.innerHTML});
+    postText.setAttribute("contenteditable", "false");
+    postText.style.background = '';
+
+    this.toastr.info(response.msg, 'Post');
   }
 
   preparePost(posts: any){

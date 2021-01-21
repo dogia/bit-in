@@ -11,15 +11,13 @@ import { USER } from './../services/user.service';
 })
 export class CrearCuentaComponent implements OnInit {
 
-  private email: string = null;
-  private password: string = null;
-  private repassword: string = null;
-  private nickname: string = null;
-  private fullname: string = null;
-  private birthdate: string = null;
-  private image: string = null;
-
-  private fileToUpload: File = null;
+  public email: string = null;
+  public password: string = null;
+  public repassword: string = null;
+  public nickname: string = null;
+  public fullname: string = null;
+  public birthdate: string = null;
+  public image: string = null;
   
   constructor(private toastr: ToastrService, private router: Router) { }
 

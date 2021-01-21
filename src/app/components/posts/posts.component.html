@@ -1,0 +1,93 @@
+<div class="new-post">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <img [src]="user.image" class="fotografia-user" alt="Imágen de perfil">
+        </div>
+
+        <strong class="col-md-12 text-center">
+            #{{user.nickname}}
+        </strong>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <textarea name="" id="text-area-new-post" rows="5" style="resize: none; width: 100%;" [(ngModel)]="text"></textarea>
+        </div>
+        <input id="image" type="file" max-size="4000000" accept="image/*" aria-label="Fotografía"
+            (change)="handleInputChange($event)">
+    </div>
+    <br>
+    <div class="row text-rigth">
+        <button class="btn btn-primary" (click)="publicar()">Publicar</button>
+    </div>
+</div>
+
+<div class="search-results" infinite-scroll [infiniteScrollDistance]="scrollDistance"
+    [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()">
+    <div class="post" *ngFor="let post of array">
+        <div class="head-post text-center">
+            <div class="row image-post-profile">
+                <div class="col-md-12 text-center">
+                    <p class="left-post">{{post.createdate.timestamp}}</p>
+                    <img [src]="post.userimageURL" class="fotografia-user" alt="Imagen del usuario en el post"/>
+                    <p class="right-post">
+                        <i class="fas fa-trash-alt cursor" (click)="deletePost(post.idpost)"></i>
+                        &nbsp;
+                        <i class="fas fa-edit cursor"></i>
+                    </p>
+                </div>
+            </div>
+    
+            <strong class="col-md-12 text-center">
+                #{{post.usernickname}}
+            </strong>
+        </div>
+
+        <div class="row body-post" *ngIf="post.imageURL !== null">
+            <div class="col-md-4 text-center">
+                <img [src]="post.imageURL" class="fotografia-post" alt="Imagen del post"/>
+            </div>
+    
+            <div class="col-md-8 text-left">
+                <p>{{post.description}}</p>
+            </div>
+        </div>
+
+        <div class="row body-post" *ngIf="post.imageURL === null">    
+            <div class="col-md-8 text-left">
+                <p>{{post.description}}</p>
+            </div>
+        </div>
+
+        <div class="row comments-post">
+            <div class="col-12">
+                <div class="row comment">
+                    <div class="col-2" style="text-align: end;">
+                        <img [src]="post.userimageURL" class="img-comment" alt="Imágen del perfil de un usuario">
+                    </div>
+
+                    <div class="col-10 text-left">
+                        <p>Text Comment</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-12">
+                <div class="row new-comment">
+                    <div class="col-12 text-center">
+                        <div class="row">
+                            <div class="ncs">
+                                <img [src]="post.userimageURL" class="img-comment" alt="Imágen del perfil de un usuario">
+                                &nbsp;
+                                <textarea class="text-area-new-comment" cols="30" rows="2" style="resize: none;" [id]="('textarea-comment-postid-'+post.idpost)"></textarea>
+                                &nbsp;
+                                <button class="btn btn-primary" (click)="comment(post.idpost)">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

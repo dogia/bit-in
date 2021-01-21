@@ -1,0 +1,80 @@
+#fotografia-user{
+    height: 32px;
+    border-radius: 16px;
+}
+
+.toolbar {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px;
+
+    background: #ea4335;
+    color: white;
+    border-bottom: 1px solid #a83227;
+    text-align: center;
+
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    
+    top: 0;
+}
+
+.toolbar * {
+    display: inline-block;
+    user-select: none;
+}
+
+.menu-user-data{
+    visibility: hidden;
+    clear: both !important;
+    display: block !important;
+    position: relative;
+    top: -2px;
+}
+
+.menu-user-data > .option-menu-user-data{
+    background-color: #ea4335;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    display: block !important;
+    position: relative;
+    right: 5%;
+    text-align: center;
+    height: 2em;
+    margin: 0;
+    padding: 0;
+    line-height: 2em;
+    cursor: pointer;
+}
+
+.menu-user-data > .option-menu-user-data:hover{
+    background-color: #a83227;
+}
+
+.user-data > .button-menu{
+    padding: 6px;
+    border-radius: calc(1em + 6px);
+    cursor: pointer;
+}
+
+
+.user-data > .button-menu:hover{
+    background-color: #a83227;
+}
+
+.hidden{
+    visibility: hidden !important;
+}
+
+
+// Input que controla el estado del menú desplegable escondido
+#menuStatus{
+    height: 0;
+    width: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: -1em;
+    z-index: -1000;
+}

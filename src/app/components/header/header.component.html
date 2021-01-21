@@ -1,0 +1,34 @@
+<div class="toolbar">
+    <div class="float-left">
+        <h1>Bit-in</h1>
+    </div>
+
+    <p>{{time}}</p>
+
+    <div class="float-right">
+        <div class="user-data">
+            <div class="nickname-user text-larger">
+                #{{user.nickname}}
+            </div>
+            &nbsp;
+            <img [src]="user.image" id="fotografia-user" alt="Imágen de perfil">
+            &nbsp;
+            <label (click)="switchDisplayMenu()" class="button-menu fas fa-chevron-down"></label>
+        </div>
+        
+        <nav class="menu-user-data" id="menu-user-data">
+            <ul class="option-menu-user-data">
+                <i class="fas fa-user"></i>&nbsp;<i>Perfil</i>
+            </ul>
+
+            <ul class="option-menu-user-data">
+                <i class="fas fa-envelope-open-text"></i>&nbsp;<i>Mensajes</i>
+            </ul>
+
+            <ul class="option-menu-user-data" (click)="cerrarSesion()">
+                <i class="fas fa-power-off"></i>&nbsp;<i>Cerrar Sesión</i>
+            </ul>
+            
+        </nav>
+    </div>
+</div>

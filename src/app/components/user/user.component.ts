@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserComponent implements OnInit {
 
+  public showChangePass: boolean = false;
   public imageprofileURL: string = '#';
   public user: any = {};
 

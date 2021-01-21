@@ -34,9 +34,14 @@
                 <div class="col-md-12 text-center">
                     <p class="left-post">{{post.createdate.timestamp | date:'shortTime'}}</p>
                     <img [src]="post.userimageURL" class="fotografia-user" alt="Imagen del usuario en el post"/>
+                    <p class="right-post">
+                        <i class="fas fa-trash-alt cursor" (click)="deletePost(post.idpost)"></i>
+                        &nbsp;
+                        <i class="fas fa-edit cursor" (click)="editable(post.idpost)"></i>
+                    </p>
                 </div>
             </div>
-    
+
             <strong class="col-md-12 text-center">
                 #{{post.usernickname}}
             </strong>

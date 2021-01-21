@@ -70,10 +70,16 @@
     border-radius: 25px;
 }
 
+/* ncs Contiene el area de nuevo comentario completa*/
+
 .ncs{
     margin: auto;
     display: flex;
     align-items: center;
+
+    padding: 15px;
+    background: #222;
+    border-radius: 3em;
 }
 
 .comment{
@@ -82,4 +88,28 @@
     padding: 15px;
     border-radius: 10px;
     color: white;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.submit-comment{
+    padding-top: calc(1em - 2px);
+    padding-bottom: calc(1em - 2px);
+    border-radius: 2em;
+}
+
+.text-area-new-comment{
+    border-radius: 2em;
+    padding: 15px;
+}
+
+.text-area-new-comment:focus{
+    outline: none !important;
 }

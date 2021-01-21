@@ -20,14 +20,13 @@ export class UserComponent implements OnInit {
   constructor(private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.imageprofileURL =  `http://apibitwanv1.tk/public/uploads/${environment.applicantcode}/users/${USER.getId()}/${USER.getImage()}`;
+    this.imageprofileURL =  `//apibitwanv1.tk/public/uploads/${environment.applicantcode}/users/${USER.getId()}/${USER.getImage()}`;
     this.loadData();
   }
 
   async loadData(){
     const response = await USER.verPorId(USER.getId());
     this.user = response.data;
-    console.log(response);
   }
 
   async cambirClave(){

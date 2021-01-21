@@ -26,7 +26,7 @@ export class PostsComponent implements OnInit {
   constructor(private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.user.image = `http://apibitwanv1.tk/public/uploads/${environment.applicantcode}/users/${USER.getId()}/${USER.getImage()}`;
+    this.user.image = `//apibitwanv1.tk/public/uploads/${environment.applicantcode}/users/${USER.getId()}/${USER.getImage()}`;
     this.user.nickname = USER.getNickname();
     this.verPorUsuarioId();   
   }
@@ -48,7 +48,12 @@ export class PostsComponent implements OnInit {
     this.toastr.info(response.msg, 'Post');
   }
 
-  preparePost(posts: any){
+  async getComments(idpost: number){
+    const result = await USER.request(environment.URLs.comentarios.verPorPostId, {idpost: idpost});
+    return result.data;
+  }
+
+  async preparePost(posts: any){
     // Preparamos las URLs de las imágenes del post
     for (const i in posts){
       if (posts[i].image != null && posts[i].image.length)
@@ -59,8 +64,7 @@ export class PostsComponent implements OnInit {
         posts[i].userimageURL = `${environment.URLs.uploads}/${environment.applicantcode}/users/${posts[i].iduser}/${posts[i].userimage}`;
       else posts[i].userimageURL = null
 
-
-      
+      posts[i].comments = await this.getComments(posts[i].idpost);
     }
 
     return posts;
@@ -69,16 +73,32 @@ export class PostsComponent implements OnInit {
   // Cargar los posts
   async verPorUsuarioId(){
     const result = await POSTS.verPorIdUsuario(USER.getId());
-    this.array = this.preparePost(result.data);
-    this.initialPosts = this.preparePost(result.data);
-    console.log(this.array);
+    this.array = await this.preparePost(result.data);
+    this.initialPosts = await this.preparePost(result.data);
   }
 
   async deletePost(id: number){
     const result = await POSTS.eliminarPost(id);
-    console.log(result);
     this.verPorUsuarioId();
     return;
+  }
+
+  async deleteComment(idpost: number, idcomment: number){
+    const response = await USER.request(environment.URLs.comentarios.eliminar, {idcomment: idcomment});
+    if (response.code == 200){
+      this.toastr.success(response.msg, 'Comentario');
+    }else{
+      this.toastr.error(response.error, 'Comentario');
+    }
+
+    for (const i in this.array){
+      if(this.array[i].idpost == idpost){
+        this.array[i].comments = await this.getComments(idpost);
+        return response;
+      }
+    }
+
+    return response;
   }
 
   onScrollDown(){
@@ -99,7 +119,7 @@ export class PostsComponent implements OnInit {
     if (result.code == 200){
       this.toastr.success(result.msg, 'Publicación');
     }else{
-      this.toastr.success(result.error, 'Publicación');
+      this.toastr.error(result.error, 'Publicación');
     }
     
     // Reiniciamos el input de carga y el campo de texto de los posts
@@ -111,8 +131,24 @@ export class PostsComponent implements OnInit {
     this.imagen = null;
   }
 
-  comment(id){
-    console.log(id);
+  async comment(idpost: number, textarea: any){
+    const response = await USER.request(environment.URLs.comentarios.crear, {idpost: idpost, iduser: USER.getId(), description: textarea.value});
+    if (response.code == 200){
+      this.toastr.success(response.msg, 'Comentario');
+    }else{
+      this.toastr.error(response.error, 'Comentario');
+    }
+    textarea.value = '';
+
+    // Agregar el comentario al post TODO
+    for (const i in this.array){
+      if(this.array[i].idpost == idpost){
+        this.array[i].comments = await this.getComments(idpost);
+        return response;
+      }
+    }
+
+    return response;
   }
 
   handleInputChange(e) {

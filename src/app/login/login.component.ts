@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
     const result = await USER.login(this.email, this.password);
 
     if (result.code == 200){
-      this.toastr.info(result.msg);
       this.router.navigate(['/home']);
     }else{
       this.toastr.error(result.msg);

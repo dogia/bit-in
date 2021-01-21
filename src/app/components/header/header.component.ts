@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     // Ruta de la imagen del usuario en el servidor remoto
-    this.user.image =  `http://apibitwanv1.tk/public/uploads/${environment.applicantcode}/users/${USER.getId()}/${USER.getImage()}`;
+    this.user.image =  `//apibitwanv1.tk/public/uploads/${environment.applicantcode}/users/${USER.getId()}/${USER.getImage()}`;
     this.user.nickname = USER.getNickname();
   }
 }

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="fix-flex">
-        <h1>Bit-In</h1>
+        <h1><i class="fas fa-fire"></i>&nbsp;Bit-In</h1>
 
         <p>Nos alegra tenerte del lado curioso de la vida. ¡Bienvenido!</p>
 
@@ -44,10 +44,16 @@
                 <input id="birthdate" type="date" class="form-control" aria-label="Cumpleaños" [(ngModel)]="birthdate">
             </div>
 
-            <label for="image">Imágen de perfil (Opcional)</label>
-            <div class="input-group mb-3">
-                <input id="image" type="file" max-size="4000000" accept="image/*" aria-label="Fotografía" (change)="handleInputChange($event)">
+            <div class="row">
+                <div class="input-group mb-3">
+                    <input id="image" type="file" class="inputfile" max-size="4000000" accept="image/*" aria-label="Fotografía" (change)="handleInputChange($event)">
+                </div>
+                <div class="col-12">
+                    <label for="image">Imágen de perfil (Opcional pero recomendado)</label>&nbsp;
+                    <label for="image" class="btn btn-primary" style="padding: 6px 12px; margin: 1px;"><i class="far fa-images"></i></label>
+                </div>
             </div>
+            
 
             <br>
             <button class="login-btn btn btn-primary" (click)="crear()">Crear</button>&nbsp;<a class="login-btn btn btn-secondary" routerLink="">Regresar</a>
